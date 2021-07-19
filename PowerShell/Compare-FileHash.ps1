@@ -16,7 +16,7 @@ function Compare-FileHash {
 .NOTES
     FileName:   Compare-FileHash.ps1
     Author:     Thomas Seals
-    E-mail:     SealsT@Laportetx.gov
+    E-mail:     
     PSVer:      5.1
     Updates:
 
