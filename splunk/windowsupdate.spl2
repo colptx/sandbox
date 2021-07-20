@@ -1,0 +1,22 @@
+index=wineventlog eventtype=Update_* package=* host=* earliest=-30d@d
+| dedup package_title,host
+| eval format_time = strftime(_time,"%Y/%m/%d %H:%M.%S %p")
+| table format_time, host, package, package_title, Keywords
+| eval host=upper(host)
+| sort host
+| rename format_time as "Date/Time", host as "Hostname", package_title as "KB Title", package as "KB", Keywords as "Patch Status"
+
+======= better one ======
+
+index=windows eventtype="Update_*" package=* host=* earliest=-30d@d
+| mvexpand package_title
+| dedup package_title,host
+| rex field=package_title "(?<package_rex>(?<=\()[^)]*(?=\)))"
+| where package == package_rex
+| eval format_time = strftime(_time,"%Y/%m/%d %H:%M.%S %p")
+| eval patch_status = if(eventtype="Update_Successful","Update Successful",if(eventtype="Update_Failed","Update Failed",if(eventtype="Update_Pending_Reboot","Pending Reboot", "Update Available")))
+| search patch_status = "Update *"
+| table format_time, host, package, package_title, patch_status
+| eval host=upper(host)
+| sort host
+| rename format_time as "Date/Time", host as "Hostname", package_title as "KB Title", package as "KB",patch_status as "Patch Status"

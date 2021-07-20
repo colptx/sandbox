@@ -1,0 +1,24 @@
+#
+#	Queries for a dashboard "Server Overwatch"
+#
+# Services that are stopped but are set to automatic
+index="windows" host=* Type=Service StartMode=* State!=Running
+| search StartMode=Auto, Name NOT sppsvc AND NOT MapsBroker AND NOT edgeupdate AND NOT RemoteRegistry AND NOT gupdate AND NOT ShellHWDetection AND NOT wbioSrvc AND NOT clr_* AND NOT DPS
+| dedup host, Name
+| stats list(Name) AS Name,list(DisplayName) AS DisplayName,list(StartMode) AS StartMode,list(State) AS State by host 
+| table host, Name, DisplayName
+| sort by host
+
+# Get's anything if there is a probelem with the DC's DFSR (not sure if it works quite yet...)
+index=wineventlog host="dc*" SourceName=DFSR 
+| search Type!=Information
+| table host, _time, EventCode, LogName, Type
+
+# Server was reboot/shutdown
+index=wineventlog host="*" EventCode=41 OR EventCode=1074 OR EventCode=4608 OR EventCode=4609
+| table _time, host, ShutdownType, SourceName, Message
+
+# CPU usage over total (i believe there is a better way to accomplish this...)
+index="perfmon" host=server0 source="Perfmon:CPU" counter="% Processor Time"
+| eval Percent=round('Value')
+| table host, Percent
