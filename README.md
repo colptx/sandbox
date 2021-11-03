@@ -12,3 +12,5 @@ VMs:
 1. fedora1 - Fedora 34 KDE (gnome 40 is nice, but...)
 1. suse1 - SUSE Tumbleweed KDE 
 1. splunkd - CentOS7 and Splunk (probably rotate out for promethus and grafana)
+2. kubemast - Ubuntu 20.04 running Kubernetes
+3. Kubenode01 - Ubuntu 20.04 running Kubernetes
