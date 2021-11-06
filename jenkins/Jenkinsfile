@@ -1,0 +1,55 @@
+pipeline {
+    agent {
+        label 'agent2'
+    }
+    stages {
+        stage('start_yob') {      
+            steps {
+                slackSend(message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ")
+
+            }
+        }
+        stage('lenting') {
+            options {
+                timeout(time: 5, unit: 'MINUTES')
+            }            
+            steps {
+                slackSend(message: "Lenting: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+                validateDeclarativePipeline 'Jenkinsfile'
+            }
+        }
+        stage('build') {
+            options {
+                timeout(time: 15, unit: 'MINUTES')
+
+            }
+            steps {
+                slackSend(message: "Build Deploying to Staging: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+            }
+        }
+        stage('testing') {
+            options {
+                timeout(time: 5, unit: 'MINUTES')
+            }
+            steps {
+                slackSend(message: "Build Testing: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+            }
+        }
+    }
+    post {
+        always {
+            //slackSend(message: "Build Completed: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+            echo "Do or Do not. There is no try."
+        }
+        success {
+            slackSend(message: "Build Successful: ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+        }
+        failure {
+            slackSend(message: "Build Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ")
+        }
+        cleanup {
+            sh 'docker image prune -a' // cleans currently unused images
+            cleanWs() // testing this bit
+        }
+    }
+} a
