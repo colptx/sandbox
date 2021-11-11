@@ -8,10 +8,11 @@ volumes:
 services:
   agent:
     image: portainer/agent
+    ports:
+      - "9001:9001"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
-    restart: unless-stopped
 
   portainer:
     image: portainer/portainer-ce
@@ -20,8 +21,7 @@ services:
       - "9000:9000"
     volumes:
       - portainer_data:/data
-    restart: unless-stopped
-    
+
 volumes:
   portainer_data:
     driver: local
