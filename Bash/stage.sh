@@ -1,7 +1,7 @@
 #!/bin/bash 
 # UBUNTU INSTALLER | 20.04
 
-echo "Deploying CrouchJump Staging Build..."
+echo "Deploying Staging Build..."
 
 sudo apt-get update && sudo apt-get upgrade -y
 #forgot and rebooted
