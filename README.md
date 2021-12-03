@@ -1,6 +1,6 @@
 # Thomas Seals | System Adminstrator & Cloud Engineer
 
-The resume repo is designed to showcase my capability and experience with various languages.
+The resume repo is designed to showcase my capability and experience with various systems and languages.
 
 HomeLab: ProLiant MicroServer Gen10 Plus with Vmware ESXI 7.0 Update 2 
 *(learned that software RAID was not supported by ESXI and did not want a HyperV server without a pro license)* 
@@ -14,5 +14,6 @@ VMs:
 2. Rocky1 - Rocky Linux OS (wow... love it)
 3. ~~suse1 - SUSE Tumbleweed KDE~~
 4. ~~splunkd - CentOS7 and Splunk~~ (rotated out for promethus and grafana in docker)
-5. kubemast - Ubuntu 20.04 running Kubernetes
-6. Kubenode01 - Ubuntu 20.04 running Kubernetes
+5. kubemast00 - Ubuntu 20.04  (Kubernetes & Ansible)
+6. kubenode01 - Ubuntu 20.04 
+7. kubenode02 - Ubuntu 20.04
