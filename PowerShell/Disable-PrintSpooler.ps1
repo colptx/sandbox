@@ -5,7 +5,7 @@
 $servers = Get-ADComputer -Properties OperatingSystem -SearchBase 'OU=Servers,OU=location,DC=domain,DC=com' -filter {
     Enabled -eq $true -and 
     OperatingSystem -like '*Server*' -and 
-    Name -notlike ‘printserver1’ -and
+    Name -notlike 'printserver1' -and
     Name -notlike 'dms1'
 } | Select-Object -ExpandProperty Name
 $service = 'Spooler'
