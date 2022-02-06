@@ -1,13 +1,13 @@
 #!/bin/bash 
 # UBUNTU INSTALLER | 20.04
 
-echo "Deploying Staging Build..."
+echo "Deploying Staging Environment..."
 
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt update && sudo apt upgrade -y
 #forgot and rebooted
 
 #Set up the repository
-sudo apt-get install \
+sudo apt install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -30,12 +30,13 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker 
 
-#Install Addtional programs
-sudo apt-get install \
-    docker-compose \
-    npm  \
-    git -y
+#Install docker-compose stable (1.29.2)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-sudo npm install yarn -y
+#Install docker compose v2 (2.2.3)
+#mkdir -p ~/.docker/cli-plugins/
+#curl -SL "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o ~/.docker/cli-plugins/docker-compose
+#chmod +x ~/.docker/cli-plugins/docker-compose
 
-echo "Please setup your git repository."
+echo "Docker environment deployed!"

@@ -4,6 +4,7 @@ version: '3.2'
 services:
   agent:
     image: portainer/agent
+    restart: unless-stopped
     ports:
       - "9001:9001"
     volumes:
@@ -12,6 +13,7 @@ services:
 
   portainer:
     image: portainer/portainer-ce
+    restart: unless-stopped
     command: -H tcp://agent:9001 --tlsskipverify
     ports:
       - "9000:9000"
