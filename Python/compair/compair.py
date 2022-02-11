@@ -2,7 +2,7 @@ def main():
     #Check if firstNum value entered is a number
     while True:
         try:
-            firstNum = int(input("Enter first number:"))
+            first_num = int(input("Enter first number:"))
         except ValueError:
             print("Please enter a number.")
             continue
@@ -14,7 +14,7 @@ def main():
     #Check if secondNum value entered is a number
     while True:
         try:
-            secondNum = int(input("Enter second number:"))
+            second_num = int(input("Enter second number:"))
         except ValueError:
             print("Please enter a number.")
             continue
@@ -24,12 +24,12 @@ def main():
             break
     
     # Compairison Evaluation 
-    if firstNum > secondNum:
-        print(f"{firstNum} is greater than {secondNum}!")
-    elif firstNum < secondNum:
-        print(f"{firstNum} is less than {secondNum}!")
+    if first_num is second_num:
+        print(f"{first_num} and {second_num} are equal.")
+    elif first_num < second_num:
+        print(f"{first_num} is less than {second_num}!")
     else:
-        print(f"{firstNum} and {secondNum} are equal.")
+        print(f"{first_num} is greater than {second_num}!")
 
 if __name__ == '__main__':
     main()
