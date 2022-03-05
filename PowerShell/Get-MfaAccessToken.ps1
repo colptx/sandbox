@@ -13,7 +13,7 @@
         https://aws.amazon.com/premiumsupport/knowledge-center/authenticate-mfa-cli/
 #>
 
-function Generate-MfaAccessToken {
+function Get-MfaAccessToken {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true,
@@ -68,6 +68,7 @@ function Generate-MfaAccessToken {
 
     if (Find-Prerequisite){
         $json = Get-TempAcccess | ConvertFrom-Json
+        Write-Host $json -ForegroundColor Cyan
         if ($null -ne $json){ 
 
             Set-MfaToken
