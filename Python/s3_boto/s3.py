@@ -23,4 +23,4 @@ s3.download_file(S3_BUCKET, 's3filename.txt', 'localfilename.txt')'''
 
 # upload file from local directory to s3 bucket
 with open('warning.txt', "rb") as f:
-  s3.upload_fileobj(f, S3_BUCKET, 'security_warning.txt')
+  s3.upload_fileobj(f, S3_BUCKET, 'example.jpg')
