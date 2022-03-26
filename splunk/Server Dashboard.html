@@ -1,0 +1,250 @@
+<dashboard version="1.1" theme="dark">
+    <label>GIS Enterprise Server</label>
+    <description>in aws</description>
+    <row>
+      <panel>
+        <title>CPU</title>
+        <chart>
+          <title>% CPU Utilization</title>
+          <search>
+            <query>index="perfmon" host="hostname" source="Perfmon:CPU" counter="% Processor Time"
+  | eval Percent=round('Value')
+  | table host, Percent</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.axisTitleY.visibility">collapsed</option>
+          <option name="charting.axisTitleY2.visibility">visible</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.chart.showDataLabels">minmax</option>
+          <option name="charting.drilldown">all</option>
+          <option name="charting.legend.placement">none</option>
+          <option name="height">251</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>RAM</title>
+        <chart>
+          <title>% Committed Bytes In Use</title>
+          <search>
+            <query>index="perfmon" host="hostname" source="Perfmon:Memory" metric_name="% Committed Bytes In Use"
+  | eval Percent=round('Value')
+  | table host, Percent</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.axisTitleY.visibility">collapsed</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.drilldown">none</option>
+          <option name="charting.legend.placement">none</option>
+          <option name="height">250</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>Web</title>
+        <chart>
+          <title>HTTP Responses by count</title>
+          <search>
+            <query>index=web host="hostname"  | timechart count by status usenull=f | fields - skipped, success</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.text">Time</option>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.axisTitleY.visibility">visible</option>
+          <option name="charting.axisTitleY2.visibility">visible</option>
+          <option name="charting.chart">line</option>
+          <option name="charting.drilldown">none</option>
+          <option name="charting.legend.placement">right</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>Web</title>
+        <chart>
+          <title>Web Method by count</title>
+          <search>
+            <query>index=web host="hostname" cs_method="*"
+  | timechart count by cs_method usenull=f 
+  | fields - skipped, success,</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.chart">line</option>
+          <option name="charting.drilldown">none</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+    </row>
+    <row>
+      <panel>
+        <title>Disk</title>
+        <chart>
+          <title>Avg. Disk sec/Read</title>
+          <search>
+            <query>index="perfmon" host="hostname" metric_name="Avg. Disk sec/Read" 
+  | table metric_name, Value</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.axisTitleY.visibility">collapsed</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.drilldown">none</option>
+          <option name="charting.legend.placement">none</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>Disk</title>
+        <chart>
+          <title>Avg. Disk sec/Write</title>
+          <search>
+            <query>index="perfmon" host="hostname" metric_name="Avg. Disk sec/Write"
+  | table metric_name, Value</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.axisTitleY.visibility">collapsed</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.drilldown">none</option>
+          <option name="charting.legend.placement">none</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>Disk</title>
+        <chart>
+          <title>Avg. Disk sec/Transfer</title>
+          <search>
+            <query>index="perfmon" host="hostname" metric_name="Avg. Disk sec/Transfer"
+  | table metric_name, Value</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.axisTitleY.visibility">collapsed</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.drilldown">none</option>
+          <option name="charting.legend.placement">none</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>Disk</title>
+        <chart>
+          <title>Disk Reads &amp; Writes /sec</title>
+          <search>
+            <query>| multisearch [search index="perfmon" host="hostname" source=Perfmon:LogicalDisk instance=_Total metric_name="Disk Reads/sec"] [search index="perfmon" host="hostname" source=Perfmon:LogicalDisk instance=_Total metric_name="Disk Writes/sec"]
+  | timechart span=5m avg(Value) BY metric_name</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">collapsed</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.drilldown">all</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+    </row>
+    <row>
+      <panel>
+        <title>Network</title>
+        <chart>
+          <title>MB Sent &amp; Received /sec</title>
+          <search>
+            <query>| multisearch [search index="perfmon" host="hostname" source=Perfmon:network metric_name="Bytes Received/sec"] [search index="perfmon" host="hostname" source=Perfmon:network metric_name="Bytes Sent/sec"]
+  | eval Bytes=round('Value')
+  | eval MB=Bytes/1000
+  | timechart span=1m avg(MB) BY metric_name</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.axisTitleX.visibility">visible</option>
+          <option name="charting.axisTitleY.visibility">visible</option>
+          <option name="charting.axisTitleY2.visibility">visible</option>
+          <option name="charting.chart">area</option>
+          <option name="charting.drilldown">none</option>
+          <option name="charting.legend.placement">right</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+      <panel>
+        <title>Network</title>
+        <chart>
+          <title>Packets Sent &amp; Received /sec</title>
+          <search>
+            <query>| multisearch [search index="perfmon" host="hostname" source=Perfmon:network metric_name="Packets Sent/sec"] [search index="perfmon" host="hostname" source=Perfmon:network metric_name="Packets Received/sec"]
+  | eval Packets=round('Value')
+  | timechart span=1m avg(Packets) BY metric_name</query>
+            <earliest>-4h@m</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="charting.chart">line</option>
+          <option name="charting.drilldown">none</option>
+          <option name="refresh.display">progressbar</option>
+        </chart>
+      </panel>
+    </row>
+    <row>
+      <panel>
+        <title>Web Visits Over the last 24hrs</title>
+        <map>
+          <title>Geolocations</title>
+          <search>
+            <query>index=web host="hostname"
+  | table time, time_taken , http_method, sc_status, port, src
+  | iplocation src
+  | geostats count by Country</query>
+            <earliest>-24h@h</earliest>
+            <latest>now</latest>
+          </search>
+          <option name="drilldown">none</option>
+          <option name="mapping.type">marker</option>
+        </map>
+      </panel>
+    </row>
+    <row>
+      <panel>
+        <title>IIS</title>
+        <table>
+          <title>Web Activity Over the last 24hrs not 12.68.75.195 OR 172.31.150.62</title>
+          <search>
+            <query>index=web host="hostname" src NOT ("12.68.75.195","172.31.150.62")| table  time, time_taken, http_method, sc_status, src, port, http_user_agent, uri_path</query>
+            <earliest>-24h@h</earliest>
+            <latest>now</latest>
+            <refresh>5m</refresh>
+            <refreshType>delay</refreshType>
+          </search>
+          <option name="drilldown">none</option>
+          <option name="refresh.display">progressbar</option>
+        </table>
+      </panel>
+    </row>
+  </dashboard>
