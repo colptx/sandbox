@@ -1,19 +1,21 @@
-# Thomas Seals | System Adminstrator & Cloud Engineer
+# Thomas Seals | Systems, Network, and Cloud Engineer
 
 This repository is designed to showcase my capability and experience with various systems and languages.
 
-HomeLab: ProLiant MicroServer Gen10 Plus with Vmware ESXI 7.0u3 
-*(learned that software RAID was not supported by ESXI and did not want a HyperV server without a pro license)* 
+### HomeLab: ProLiant MicroServer Gen10 Plus with Vmware ESXI 7.0u3 
+'''
+(learned that software RAID was not supported by ESXI but did not want a HyperV server)
+Thinking about replacing this with Proxmox or XCP-NG & Xen Orchestra
+'''
 
-VMs:
-1. ~~Windows Server (i work with Windows too much at work...)~~
-1. Docker1 - Ubuntu 20.04 and Docker (portainer, promethus, grafana,cadvisor, node_exporter, valheim)
+### VMs:
+1. gns3 - Updating my Networking knowledge
+1. Watcher - Ansible Controller (promethus, grafana)
+1. Docker1 - Ubuntu 20.04 and Docker (portainer, cadvisor node_exporter, valheim)
 1. Kasm1 - Ubuntu 20.04 (Kasm Workspaces)
-1. cjdev2 - Ubuntu 20.04 KDE desktop (to keep up with my PERN developers)
-1. fedora1 - Fedora 35 KDE (gnome 40 is nice, but...I <3 KDE)
-2. Rocky1 - Rocky Linux OS (wow... love it)
-3. ~~suse1 - SUSE Tumbleweed KDE~~
-4. ~~splunkd - CentOS7 and Splunk~~ (thinking about bring back)
-5. kubemast00 - Ubuntu 20.04  (Kubernetes & Ansible)
-6. kubenode01 - Ubuntu 20.04 
-7. kubenode02 - Ubuntu 20.04
+1. cjdev2 - Ubuntu 22.04 KDE desktop (to keep up with my PERN developers)
+1. fedora - Fedora 36 
+2. Balboa - Rocky Linux OS
+5. kubemast00 - Ubuntu 20.04  (I need to get back to Kubernetes)
+6. kubenode01 - Ubuntu 20.04  (maybe another linux distro?)
+7. kubenode02 - Ubuntu 20.04  
