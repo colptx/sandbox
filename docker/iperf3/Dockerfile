@@ -11,5 +11,5 @@ RUN apt-get update && \
 EXPOSE 5201
 
 # requires ags to be passed 
-# Example: '-s' 
+# Example: '-s' to start the listening server
 ENTRYPOINT ["iperf3"]
