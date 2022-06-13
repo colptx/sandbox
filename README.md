@@ -3,8 +3,8 @@
 This repository is designed to showcase my capability and experience with various systems and languages.
 ```
 ### HomeLab: ProLiant MicroServer Gen10 Plus with Vmware ESXI 7.0u3 
-*(learned that software RAID was not supported by ESXI but did not want a HyperV server)*
 ```
+(learned that software RAID was not supported by ESXI but did not want a HyperV server)
 I have been Thinking about replacing hypervisor with Proxmox or XCP-NG & Xen Orchestra
 ```
 
