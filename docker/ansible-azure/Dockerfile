@@ -1,6 +1,6 @@
 # From https://docs.microsoft.com/en-us/azure/developer/ansible/configure-in-docker-container?tabs=azure-cli
 
-FROM centos:7
+FROM centos:latest
 
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
