@@ -1,6 +1,9 @@
 <#
     I wanted a quick tool that would locate a Mac address within DHCP servers.
     Imports the format coversion I had to write to accept any normal format of a MAC address.
+
+    .TODO
+    Add functionality for multiple mac addresses
 #>
 
 Import-Module ./ConvertTo-MsMacFormat
@@ -22,8 +25,8 @@ function Get-IpFromMacAddress {
     Begin{}
     Process{
             foreach($DhcpServer in $DhcpServers){
-                ConvertTo-MsMacFormat -MacAddr $MacAddress
-                Get-DhcpServerv4Scope -ComputerName $DhcpServer | Get-DhcpServerv4Lease -ComputerName $DhcpServer | Where-Object {$_.clientid -eq $MacAddress}
+                $Mac = ConvertTo-MsMacFormat -MacAddr $MacAddress
+                Get-DhcpServerv4Scope -ComputerName $DhcpServer | Get-DhcpServerv4Lease -ComputerName $DhcpServer | Where-Object {$_.clientid -eq $Mac}
             }            
         }
     End{}
