@@ -1,12 +1,9 @@
 <#
     I wanted a quick tool that would locate a Mac address within DHCP servers.
     Imports the format coversion I had to write to accept any normal format of a MAC address.
-
-    .TODO
-    Add functionality for multiple mac addresses
 #>
 
-Import-Module ./ConvertTo-MsMacFormat
+Import-Module '.\DHCP\ConvertTo-MsMacFormat.psm1'
 
 function Get-IpFromMacAddress {
     [cmdletbinding()]
@@ -16,7 +13,7 @@ function Get-IpFromMacAddress {
         [ValidateNotNullOrEmpty()]
         [array]$DhcpServers,
         [Parameter(Mandatory=$True,
-        HelpMessage="Please Enter a Address to search for")]
+        HelpMessage="Please Enter a MAC to search for")]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern(“^[0-9A-Fa-f]{12}|([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\.[0-9a-fA-F]{4}\.[0-9a-fA-F]{4})$”)]
         [string]$MacAddress
