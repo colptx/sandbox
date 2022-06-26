@@ -14,7 +14,7 @@ foreach ($directory in $directories){
     Write-Host "Writing new ACLs to Directories..." -ForegroundColor Yellow
     Write-Host "$directory" -ForegroundColor Cyan
     $acls = (Get-Acl -Path $directory).Access
-    $acllist = $acls | Where-Object {-not($_.IdentityReference -eq 'LAPORTE\Domain Admins' -or $_.IdentityReference -eq 'BUILTIN\Administrators' -or  $_.IdentityReference -eq 'NT AUTHORITY\SYSTEM' -or  $_.IdentityReference -eq 'SVC_IAPro' -or  $_.IdentityReference -eq 'CHPaymentKiosk')}
+    $acllist = $acls | Where-Object {-not($_.IdentityReference -eq 'LAPORTE\Domain Admins' -or $_.IdentityReference -eq 'BUILTIN\Administrators' -or  $_.IdentityReference -eq 'NT AUTHORITY\SYSTEM')}
 
     foreach ($right in $acllist){
         if ($right.IsInherited){Continue}
