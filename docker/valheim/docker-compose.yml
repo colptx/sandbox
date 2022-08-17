@@ -8,8 +8,8 @@ services:
       - 2458:2458/udp
     environment:
       - PORT=2456
-      - NAME="KoolKids"
-      - WORLD="KoolKids"
+      - NAME="ValHYPE"
+      - WORLD="ValHYPE"
       - PASSWORD="password"
       - TZ=America/Chicago
       - PUBLIC=1
@@ -22,6 +22,6 @@ services:
       - AUTO_BACKUP_ON_UPDATE=1
       - AUTO_BACKUP_ON_SHUTDOWN=1
     volumes:
-      - /opt/valheim/KoolKids/saves:/home/steam/.config/unity3d/IronGate/Valheim
-      - /opt/valheim/KoolKids/server:/home/steam/valheim
-      - /opt/valheim/KoolKids/backups:/home/steam/backups
+      - /opt/valheim/vax/saves:/home/steam/.config/unity3d/IronGate/Valheim
+      - /opt/valheim/vax/server:/home/steam/valheim
+      - /opt/valheim/vax/backups:/home/steam/backups
